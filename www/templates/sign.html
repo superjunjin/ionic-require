@@ -1,0 +1,24 @@
+
+		<div id="example-forms-inline-labels" class="ionic-body active-preview">
+			<div class="bar bar-header">
+				<div class="h1 title"><b>需求管理</b></div>
+			</div>
+			<div class="content has-header ">
+				<div class="list list-inset">
+					<label class="item item-input">
+						<span class="input-label"><b>用户名</b></span>
+						<input id="name" type="text">
+					</label>
+					<label class="item item-input">
+						<span class="input-label"><b>密码    </b></span>
+						<input id="password" type="password">
+					</label>
+					<!--<input type="file" id="profilePhotoFileUpload">-->
+					{{errors}}
+				</div>
+				<div class="padding">
+					<button class="button button-block button-positive" ng-click="signIn()"><b>登录</b></button>
+					<!--<button class="button button-block button-positive" ng-click="upLoad()"><b>上传</b></button>-->
+				</div>
+			</div>
+		</div>

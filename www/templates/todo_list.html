@@ -1,0 +1,64 @@
+<ion-view title="{{groupName}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon-round" ng-click="toMenu()"></button>
+    <button class="button button-icon icon ion-refresh" ng-show="groupId==1" ng-click="refresh()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <!--ng-show="groupId==1" 只有在待确认的界面才显示添加按钮-->
+    
+    <button class="button button-icon icon ion-plus-round" ng-show="groupId==1&&authority!=3" ng-click="add()"></button>
+    <button class="button button-icon icon ion-more"
+            ns-popover
+            ns-popover-template="moreMenu"
+            ns-popover-trigger="click"
+            ns-popover-theme="ns-popover-list-theme"
+            ns-popover-placement="bottom|right"
+            ns-popover-timeout="2"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+ 
+    <div class="list" ng-show="!todolists.length">
+      <div class="row">
+        <div class="col text-center " style="color: #0C63EE;">暂时还没有任务安排！</div>
+      </div>
+    </div>
+
+    <div class="list" id="todolist" ng-show="todolists.length">
+ <!--     <div class="item item-divider" ng-show="todolists.length"> 进行中 </div>-->
+      <div class="item item-checkbox" 
+        ng-repeat="todo in todolists  | orderBy : expression : reverse " 
+        
+        ng-click="show({{todo.requireId}})"
+        ng-show="todolists.length">
+        
+        <div class="background:#f00;height:50px" class="row">
+        <label  class="checkbox {{todo.classname}}" style="width:48px;">
+        	<input type="checkbox" ion-stop-event ng-click="finish({{todo.id}}, $event);">
+        </label>
+        <!--<div class="col-33" style="width:30%;float: left;">{{todo.title | limitTo:12}}</div>
+        <div class="col-33 text-center" style="width:30%; text-align: center; float: left">{{todo.name}}</div> 
+        <div class="col-33 text-right" style="width:30%; text-align: right; float: left">{{todo.date}}</div>-->
+      
+        {{todo.title | limitTo:10}} 
+        <span class="badge">{{todo.name}}&nbsp;&nbsp;&nbsp;{{todo.date }}</span> 
+       
+        </div>
+        <span class="badge" style="margin-top: 15px;">{{todo.donedate }}</span>
+      
+      <div class="item" style="border-bottom-width:0;" ng-show="todolists_finish.length"></div>
+    </div>
+     
+  </ion-content>
+  
+</ion-view>
+ 
+<script type="text/ng-template" id="moreMenu">
+  <div class="triangle"></div>
+  <div class="ns-popover-tooltip" style="width:100px;">
+    <div class="list" style="margin-top:0;margin-bottom:0;">
+      <a class="item" ng-click="hidePopover();search();"> 搜索 </a>
+      <a class="item" ng-click="hidePopover();sort();"> 排序 </a>
+      
+    </div>
+  </div>
+</script>
