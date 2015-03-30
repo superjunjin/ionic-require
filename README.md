@@ -1,4 +1,4 @@
-require
+ionic-require
 
 基于ionic framework/angularjs/cordova的需求管理应用
 
